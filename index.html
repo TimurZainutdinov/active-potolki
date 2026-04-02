@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Active Potolki — современные интерьеры, натяжные потолки, тихие стены, потолочные системы и освещение">
+    <title>Натяжные потолки и тихие стены | Active Potolki</title>
+
+    <link rel="icon" href="/img/favicon-32x32.png" type="image/x-icon">
+    <link rel="shortcut icon" href="/img/favicon-32x32.png" type="image/x-icon">
+
+    <!-- === OPEN GRAPH (Facebook, LinkedIn, WhatsApp, Telegram) === -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://active-potolki.ru/">
+    <meta property="og:title" content="Натяжные потолки и тихие стены | Active Potolki">
+    <meta property="og:description" content="Active Potolki — современные интерьеры, натяжные потолки, тихие стены, потолочные системы и освещение">
+    <meta property="og:image" content="https://active-potolki.ru/img/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="ru_RU">
+    <meta property="og:site_name" content="Active Potolki">
+
+    <!-- === TWITTER CARDS (Twitter / X) === -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://active-potolki.ru/">
+    <meta name="twitter:title" content="Натяжные потолки и тихие стены | Active Potolki">
+    <meta name="twitter:description" content="Active Potolki — современные интерьеры, натяжные потолки, тихие стены, потолочные системы и освещение">
+    <meta name="twitter:image" content="https://active-potolki.ru/img/og-image.jpg">
+    <!-- Укажи никнейм компании, если есть -->
+    <!-- <meta name="twitter:site" content="@active_potolki"> -->
+
+    <!-- === ДОПОЛНИТЕЛЬНО (Google, Яндекс) === -->
+    <meta name="theme-color" content="#0066cc">
+    <link rel="canonical" href="https://active-potolki.ru/">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<!-- Lightbox Gallery -->
+<div class="lightbox" id="lightbox">
+    <button class="lightbox__close" id="lightboxClose" aria-label="Закрыть">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+    </button>
+    
+    <button class="lightbox__nav lightbox__nav--prev" id="lightboxPrev" aria-label="Предыдущее фото">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+    </button>
+    
+    <button class="lightbox__nav lightbox__nav--next" id="lightboxNext" aria-label="Следующее фото">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+    </button>
+    
+    <div class="lightbox__content">
+        <img src="" alt="" class="lightbox__image" id="lightboxImage">
+    </div>
+    
+    <div class="lightbox__counter" id="lightboxCounter"></div>
+</div>
+
+<body class="page">
+    <header class="header">
+        <div class="slider header__slider" id="heroSlider">
+            <div class="slider__container">
+                <div class="slider__track" id="sliderTrack">
+                    <div class="slider__slide slider__slide--active">
+                        <img src="/img/gallery/ceiling-10.webp" 
+                             alt="Современный интерьер гостиной" 
+                             class="slider__image"
+                             loading="eager"
+                             fetchpriority="high">
+                    </div>
+                    <div class="slider__slide slider__slide--active">
+                        <img src="/img/gallery/ceiling-06.webp" 
+                             alt="Современный интерьер гостиной" 
+                             class="slider__image"
+                             loading="eager"
+                             fetchpriority="high">
+                    </div>
+                    <div class="slider__slide slider__slide--active">
+                        <img src="/img/gallery/ceiling-01.webp" 
+                             alt="Современный интерьер гостиной" 
+                             class="slider__image"
+                             loading="eager"
+                             fetchpriority="high">
+                    </div>
+                    <div class="slider__slide">
+                        <img src="/img/gallery/ceiling-05.webp" 
+                             alt="Интерьер с потолочным освещением" 
+                             class="slider__image"
+                             loading="lazy">
+                    </div>
+                    <div class="slider__slide">
+                        <img src="/img/gallery/ceiling-03.webp" 
+                             alt="Дизайнерский потолок" 
+                             class="slider__image"
+                             loading="lazy">
+                    </div>
+                    <div class="slider__slide">
+                        <img src="/img/gallery/ceiling-04.webp" 
+                             alt="Дизайнерский потолок" 
+                             class="slider__image"
+                             loading="lazy">
+                    </div>
+                    <div class="slider__slide">
+                        <img src="/img/gallery/ceiling-07.webp" 
+                             alt="Дизайнерский потолок" 
+                             class="slider__image"
+                             loading="lazy">
+                    </div>
+                    <div class="slider__slide slider__slide--active">
+                        <img src="/img/gallery/ceiling-11.webp" 
+                             alt="Современный интерьер гостиной" 
+                             class="slider__image"
+                             loading="eager"
+                             fetchpriority="high">
+                    </div>
+                </div>
+                <button class="slider__btn slider__btn--prev" id="prevBtn" aria-label="Предыдущий слайд">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
+                </button>
+                <button class="slider__btn slider__btn--next" id="nextBtn" aria-label="Следующий слайд">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </button>
+                <div class="slider__dots" id="sliderDots"></div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <section class="hero">
+                <!-- <h1 class="hero__title">Aktiv Potolki</h1> -->
+                <div class="hero__logo"><img src="/img/logo-active-main.png" alt=""></div>
+                <p class="hero__subtitle">
+                    <span class="hero__tag" data-target="content-ceilings">Натяжные потолки</span>
+                    <span class="hero__divider">|</span>
+                    <span class="hero__tag" data-target="content-walls">Тихие стены</span>
+                    <span class="hero__divider">|</span>
+                    <span class="hero__tag" data-target="content-light">Подбор освещения</span>
+                </p>
+                <p class="hero__hint">Нажмите на пункт, чтобы узнать подробнее</p>
+            </section>
+
+            <div id="info-modal" class="modal-overlay">
+                <div class="modal-window">
+                    <button class="modal-close">&times;</button>
+                    <div id="modal-body" class="modal-body">
+                        <!-- Сюда будет подгружаться контент -->
+                    </div>
+                </div>
+            </div>
+
+            <div style="display: none;">
+    
+                <div id="content-ceilings">
+                    <h3>Натяжные потолки</h3>
+                    <p>Идеально ровная поверхность без штукатурки и пыли. Используем полотна премиум-класса (Китай, Германия) с гарантией от 10 лет.</p>
+                    <p><b>Популярные решения:</b></p>
+                    <ul>
+                        <li><b>Матовые</b> — классика, выглядят как идеальная штукатурка</li>
+                        <li><b>Глянцевые</b> — визуально увеличивают высоту комнаты</li>
+                        <li><b>Сатиновые</b> — благородное отражение света без бликов</li>
+                        <li><b>Тканевые</b> — экологические дышащие потолки</li>
+                    </ul>
+                    <p>Полная защита интерьера от затопления соседями сверху.</p>
+                    <!-- Пример изображения -->
+                    <img src="/img/natisnie-potolki.webp" alt="Пример потолка" style="width: 100%; margin-top: 15px; border-radius: 4px;">
+                </div>
+            
+                <div id="content-walls">
+                    <h3>Тихие стены (Натяжные стены)</h3>
+                    <p>Современная альтернатива обоям и штукатурке. Это натяжная система для вертикальных поверхностей со встроенной акустической мембраной.</p>
+                    <p><b>Преимущества:</b></p>
+                    <ul>
+                        <li><b>Звукоизоляция</b> — гасят шум соседей и эхо в комнате</li>
+                        <li><b>Идеальная геометрия</b> — скрывают неровности стен без выравнивания</li>
+                        <li><b>Чистый монтаж</b> — без грязи и строительных отходов</li>
+                    </ul>
+                    <p>Поверхность готова под покраску или имеет готовую тканевую фактуру.</p>
+                    <img src="/img/tixie-steni.webp" alt="Натяжные стены тихие стены" style="width: 100%; margin-top: 15px; border-radius: 4px;">
+                </div>
+            
+                <div id="content-light">
+                    <h3>Подбор освещения</h3>
+                    <p>Свет — главный элемент дизайна интерьера. Мы не просто вешаем люстры, а продумываем освещение под ваш образ жизни.</p>
+                    <p><b>Что мы предлагаем:</b></p>
+                    <ul>
+                        <li><b>Зонирование</b> — разделение пространства светом без перегородок</li>
+                        <li><b>Гибкость</b> — яркий свет для работы, мягкий для отдыха</li>
+                        <li><b>Стиль</b> — подбор светильников, которые дополняют ваш дизайн</li>
+                    </ul>
+                    <p>Трековые системы, парящие линии, скрытая подсветка и классические решения.</p>
+                    <img src="/img/gallery/svet-01.webp" alt="Пример освещения" style="width: 100%; margin-top: 15px; border-radius: 4px;">
+                </div>
+            
+            </div>
+
+            <section class="about">
+                <div class="about__content">
+                    <p class="about__text">
+                        <!-- <b class="about__highlight">Aktiv Potolki</b> —  -->
+                        Устанавливаем натяжные потолки любой сложности от классических матовых до многоуровневых конструкций с подсветкой. Устанавливаем архитектурный текстиль (тихие стены)
+                        известный как натяжные снены. Осуществляем подбор освещения для натяжных потолков. Работаем по Казани и пригороду с 2015 года, используем только сертифицированные материалы (Descor, Pongs, MSD) и даём гарантию до 1 года на работу. 
+                        Цены — от 450 ₽/м² с замером, монтажом и вывозом строительного мусора. Осуществляем сервисное обслуживание потолков.
+                    </p>
+                </div>
+            </section>
+
+            <section class="content-grid">
+                <div class="social-grid">
+                    <a href="https://vk.ru/ura8188" target="_blank" rel="noopener noreferrer" class="social-card">
+                        <div class="social-card__icon social-card__icon--vk">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12.727 20.027c5.52 0 8.667-3.727 8.667-8.027 0-4.3-3.147-8.027-8.667-8.027S4.06 7.7 4.06 12c0 4.3 3.147 8.027 8.667 8.027zm4.84-5.333h-1.4c-.533 0-.707-.267-1.68-1.253-.853-.853-1.227-.96-1.427-.96-.28 0-.36.08-.36.467v1.253c0 .333-.107.533-1.027.533-1.506 0-3.173-.907-4.373-2.587-1.773-2.4-2.253-4.213-2.253-4.587 0-.2.08-.387.48-.387h1.4c.36 0 .493.187.627.613.693 2.013 1.853 3.787 2.333 3.787.18 0 .267-.08.267-.627V8.04c-.053-1.107-.64-1.2-.64-1.587 0-.187.16-.373.413-.373h2.213c.333 0 .453.173.453.6v4.84c0 .347.16.467.253.467.18 0 .333-.12.667-.453 1.04-1.16 1.773-2.947 1.773-2.947.093-.2.267-.387.627-.387h2.213c.427 0 .52.213.427.6-.173.8-.933 3.173-.933 3.173-.187.467-.267.667 0 1.12.187.307.8.933 1.213 1.413.76.867 1.333 1.587 1.493 2.08.173.493-.093.747-.6.747z"/>
+                            </svg>
+                        </div>
+                        <div class="social-card__content">
+                            <h3 class="social-card__title">VK.com</h3>
+                            <p class="social-card__text">Сообщество ВКонтакте</p>
+                        </div>
+                    </a>
+
+                    <a href="https://t.me/yuriikyzin" target="_blank" rel="noopener noreferrer" class="social-card">
+                        <div class="social-card__icon social-card__icon--telegram">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+                            </svg>
+                        </div>
+                        <div class="social-card__content">
+                            <h3 class="social-card__title">Telegram</h3>
+                            <p class="social-card__text">Личный телеграмм</p>
+                        </div>
+                    </a>
+
+                    <a href="https://t.me/+-q1yEwPbAoY4OGVi" target="_blank" rel="noopener noreferrer" class="social-card">
+                        <div class="social-card__icon social-card__icon--telegram">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+                            </svg>
+                        </div>
+                        <div class="social-card__content">
+                            <h3 class="social-card__title">Telegram</h3>
+                            <p class="social-card__text">Канал в Телеграме</p>
+                        </div>
+                    </a>
+
+                    <a href="https://www.instagram.com/active_potolki" target="_blank" rel="noopener noreferrer" class="social-card">
+                        <div class="social-card__icon social-card__icon--instagram">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
+                            </svg>
+                        </div>
+                        <div class="social-card__content">
+                            <h3 class="social-card__title">Наш Инстаграм</h3>
+                            <p class="social-card__text">Группа Instagram</p>
+                        </div>
+                    </a>
+                </div>
+
+                <aside class="contacts">
+                    <div class="contacts__card">
+                        <div class="contacts__header">
+                            <span class="contacts__logo"><img src="/img/logo-active-main.png" alt=""></span>
+                            <h2 class="contacts__title">Контакты</h2>
+                        </div>
+                        <div class="contacts__list">
+                            <a href="tel:+79600401209" class="contacts__item">
+                                <svg class="contacts__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                                </svg>
+                                <span class="contacts__text">+7 (960) 040-12-09</span>
+                            </a>
+                            <a href="mailto:Ura8188@mail.ru" class="contacts__item">
+                                <svg class="contacts__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                    <polyline points="22,6 12,13 2,6"/>
+                                </svg>
+                                <span class="contacts__text">Ura8188@mail.ru</span>
+                            </a>
+                            <div class="contacts__item">
+                                <svg class="contacts__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                                    <circle cx="12" cy="10" r="3"/>
+                                </svg>
+                                <address class="contacts__text contacts__address">
+                                    г. Казань, пос. Дербышки
+                                </address>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+            </section>
+        </div>
+    </main>
+
+    <script src="base.js" defer></script>
+</body>
+</html>
