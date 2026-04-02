@@ -74,7 +74,7 @@ body {
     line-height: 1.6;
     color: var(--color-text-primary);
     /* background-color: var(--color-bg-primary); */
-    background: url(img/main-bg-3.png);
+    background: url(img/main-bg-3.webp);
     min-height: 100vh;
     overflow-x: hidden;
     transition: padding-right 0.3s ease;
