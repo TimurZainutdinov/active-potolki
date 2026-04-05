@@ -52,43 +52,86 @@ class Slider {
         if (this.prevBtn) {
             this.prevBtn.addEventListener('click', () => this.prev());
         }
-        
+    
         if (this.nextBtn) {
             this.nextBtn.addEventListener('click', () => this.next());
         }
-        
+    
         // Keyboard navigation
         document.addEventListener('keydown', (e) => {
             if (e.key === 'ArrowLeft') this.prev();
             if (e.key === 'ArrowRight') this.next();
         });
-        
+    
         // Pause on hover
         if (this.config.pauseOnHover) {
             this.slider.addEventListener('mouseenter', () => this.stopAutoplay());
             this.slider.addEventListener('mouseleave', () => this.startAutoplay());
         }
-        
+    
         // Touch support
         let touchStartX = 0;
+        let touchStartY = 0;
         let touchEndX = 0;
-        
+        let touchEndY = 0;
+        let isSwiping = false;
+        let wasSwipe = false;
+    
         this.slider.addEventListener('touchstart', (e) => {
-            touchStartX = e.changedTouches[0].screenX;
+            const touch = e.touches[0];
+            touchStartX = touch.clientX;
+            touchStartY = touch.clientY;
+            touchEndX = touch.clientX;
+            touchEndY = touch.clientY;
+            isSwiping = true;
+            wasSwipe = false;
         }, { passive: true });
-        
-        this.slider.addEventListener('touchend', (e) => {
-            touchEndX = e.changedTouches[0].screenX;
-            this.handleSwipe(touchStartX, touchEndX);
+    
+        this.slider.addEventListener('touchmove', (e) => {
+            if (!isSwiping) return;
+    
+            const touch = e.touches[0];
+            touchEndX = touch.clientX;
+            touchEndY = touch.clientY;
+    
+            const diffX = Math.abs(touchEndX - touchStartX);
+            const diffY = Math.abs(touchEndY - touchStartY);
+    
+            if (diffX > 10 && diffX > diffY) {
+                wasSwipe = true;
+                e.preventDefault();
+            }
+        }, { passive: false });
+    
+        this.slider.addEventListener('touchend', () => {
+            if (!isSwiping) return;
+    
+            this.handleSwipe(touchStartX, touchEndX, touchStartY, touchEndY);
+    
+            isSwiping = false;
+    
+            setTimeout(() => {
+                wasSwipe = false;
+            }, 50);
         }, { passive: true });
+    
+        // Блокируем ложный click после свайпа, чтобы не открывался lightbox
+        this.slider.addEventListener('click', (e) => {
+            if (wasSwipe) {
+                e.preventDefault();
+                e.stopPropagation();
+                wasSwipe = false;
+            }
+        }, true);
     }
     
-    handleSwipe(start, end) {
-        const swipeThreshold = 5000;
-        const diff = start - end;
-        
-        if (Math.abs(diff) > swipeThreshold) {
-            if (diff > 0) {
+    handleSwipe(startX, endX, startY, endY) {
+        const diffX = startX - endX;
+        const diffY = startY - endY;
+        const swipeThreshold = 50;
+    
+        if (Math.abs(diffX) > swipeThreshold && Math.abs(diffX) > Math.abs(diffY)) {
+            if (diffX > 0) {
                 this.next();
             } else {
                 this.prev();
