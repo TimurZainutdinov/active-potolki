@@ -232,6 +232,10 @@ address {
     user-select: none;
 }
 
+#heroSlider.is-dragging {
+    cursor: grabbing;
+}
+
 /* Lightbox Gallery */
 .lightbox {
     position: fixed;
