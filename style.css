@@ -74,7 +74,7 @@ body {
     line-height: 1.6;
     color: var(--color-text-primary);
     /* background-color: var(--color-bg-primary); */
-    background: url(img/main-bg-3.webp);
+    background: url(/img/main-bg-3.webp);
     min-height: 100vh;
     overflow-x: hidden;
     transition: padding-right 0.3s ease;
@@ -460,6 +460,15 @@ address {
     font-size: var(--font-size-base);
     color: var(--color-text-accent);
     font-weight: 500;
+    cursor: pointer;
+    padding: 10px 24px;
+    border: 1px solid rgba(96, 165, 250, 0.5);
+    background: linear-gradient(135deg, 
+        rgba(96, 165, 250, 0.15) 0%, 
+        rgba(96, 165, 250, 0.05) 100%);
+    border-radius: 8px;
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
 }
 
 .hero__divider {
@@ -473,8 +482,12 @@ address {
 }
 
 .hero__tag:hover {
-    color: #c7cacf;
-    text-decoration-color: #c7cacf;
+    background: linear-gradient(135deg, 
+        rgba(96, 165, 250, 0.3) 0%, 
+        rgba(96, 165, 250, 0.15) 100%);
+    border-color: rgba(96, 165, 250, 0.9);
+    box-shadow: 0 4px 20px rgba(96, 165, 250, 0.3);
+    transform: translateY(-2px);
 }
 
 .hero__hint {
@@ -809,6 +822,9 @@ address {
         width: 100%;
         height: 360px;
         margin: 0 auto;
+    }
+    .hero__tag {
+        padding: 5px 12px;
     }
 }
 
