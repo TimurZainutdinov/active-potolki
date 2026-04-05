@@ -230,14 +230,14 @@ class Lightbox {
     constructor(sliderSelector) {
         this.slider = document.querySelector(sliderSelector);
         if (!this.slider) return;
-        
+
         this.lightbox = document.getElementById('lightbox');
         this.lightboxImage = document.getElementById('lightboxImage');
         this.lightboxClose = document.getElementById('lightboxClose');
         this.lightboxPrev = document.getElementById('lightboxPrev');
         this.lightboxNext = document.getElementById('lightboxNext');
         this.lightboxCounter = document.getElementById('lightboxCounter');
-        
+
         this.slides = Array.from(this.slider.querySelectorAll('.slider__slide'));
         this.currentIndex = 0;
         this.images = this.slides.map(slide => {
@@ -247,111 +247,133 @@ class Lightbox {
                 alt: img.alt
             };
         });
-        
-        // Свойства для свайпа
+
         this.touchStartX = 0;
+        this.touchStartY = 0;
         this.touchEndX = 0;
-        
+        this.touchEndY = 0;
+
         this.init();
     }
-    
+
     init() {
-        // Add click to all slider images
         this.slides.forEach((slide, index) => {
             const img = slide.querySelector('img');
             if (img) {
                 img.addEventListener('click', () => this.open(index));
             }
         });
-        
-        // Close button
+
         this.lightboxClose.addEventListener('click', () => this.close());
-        
-        // Navigation
+
         this.lightboxPrev.addEventListener('click', (e) => {
             e.stopPropagation();
             this.prev();
         });
-        
+
         this.lightboxNext.addEventListener('click', (e) => {
             e.stopPropagation();
             this.next();
         });
-        
-        // Click on background
+
         this.lightbox.addEventListener('click', (e) => {
-            if (e.target === this.lightbox || e.target.classList.contains('lightbox__content')) {
+            if (e.target === this.lightbox) {
                 this.close();
             }
         });
-        
-        // Keyboard navigation
+
         document.addEventListener('keydown', (e) => {
             if (!this.lightbox.classList.contains('active')) return;
-            
+
             if (e.key === 'Escape') this.close();
             if (e.key === 'ArrowLeft') this.prev();
             if (e.key === 'ArrowRight') this.next();
         });
-        
-        // ✅ Touch swipe support (исправлено)
-        this.lightbox.addEventListener('touchstart', (e) => {
-            this.touchStartX = e.changedTouches[0].screenX;
+
+        // Свайп в lightbox
+        this.bindSwipe(this.lightbox);
+
+        // Если нужен свайп и на основном слайдере — раскомментируй:
+        // this.bindSwipe(this.slider);
+    }
+
+    bindSwipe(element) {
+        element.addEventListener('touchstart', (e) => {
+            const touch = e.touches[0];
+            this.touchStartX = touch.clientX;
+            this.touchStartY = touch.clientY;
+            this.touchEndX = touch.clientX;
+            this.touchEndY = touch.clientY;
         }, { passive: true });
-        
-        this.lightbox.addEventListener('touchend', (e) => {
-            this.touchEndX = e.changedTouches[0].screenX;
+
+        element.addEventListener('touchmove', (e) => {
+            const touch = e.touches[0];
+            this.touchEndX = touch.clientX;
+            this.touchEndY = touch.clientY;
+
+            const diffX = Math.abs(this.touchEndX - this.touchStartX);
+            const diffY = Math.abs(this.touchEndY - this.touchStartY);
+
+            // Если это горизонтальный свайп — блокируем нативное поведение
+            if (diffX > diffY) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+
+        element.addEventListener('touchend', () => {
             this.handleSwipe();
         }, { passive: true });
     }
-    
-    // ✅ Вынесено как отдельный метод класса
+
     handleSwipe() {
+        const diffX = this.touchStartX - this.touchEndX;
+        const diffY = this.touchStartY - this.touchEndY;
         const threshold = 50;
-        const diff = this.touchStartX - this.touchEndX;
-        
-        if (Math.abs(diff) > threshold) {
-            if (diff > 0) {
-                this.next(); // Свайп влево → следующее
+
+        if (
+            Math.abs(diffX) > threshold &&
+            Math.abs(diffX) > Math.abs(diffY)
+        ) {
+            if (diffX > 0) {
+                this.next();
             } else {
-                this.prev(); // Свайп вправо → предыдущее
+                this.prev();
             }
         }
     }
-    
+
     open(index) {
         this.currentIndex = index;
         this.updateImage();
         this.lightbox.classList.add('active');
         document.body.style.overflow = 'hidden';
     }
-    
+
     close() {
         this.lightbox.classList.remove('active');
         document.body.style.overflow = '';
     }
-    
+
     updateImage() {
         const image = this.images[this.currentIndex];
         this.lightboxImage.src = image.src;
         this.lightboxImage.alt = image.alt;
         this.lightboxCounter.textContent = `${this.currentIndex + 1} / ${this.images.length}`;
     }
-    
+
     next() {
         this.currentIndex = (this.currentIndex + 1) % this.images.length;
         this.updateImage();
     }
-    
+
     prev() {
         this.currentIndex = (this.currentIndex - 1 + this.images.length) % this.images.length;
         this.updateImage();
     }
 }
 
-// Initialize lightbox after DOM ready
 document.addEventListener('DOMContentLoaded', () => {
-    const lightbox = new Lightbox('#heroSlider');
+    new Lightbox('#heroSlider');
 });
 
 // Modal window
