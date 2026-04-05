@@ -24,6 +24,7 @@
     --space-md: 1.5rem;
     --space-lg: 2rem;
     --space-xl: 3rem;
+      
     --space-2xl: 4rem;
     
     /* Typography */
@@ -74,7 +75,7 @@ body {
     line-height: 1.6;
     color: var(--color-text-primary);
     /* background-color: var(--color-bg-primary); */
-    background: url(/img/main-bg-3.webp);
+    background: url(img/main-bg-3.webp);
     min-height: 100vh;
     overflow-x: hidden;
     transition: padding-right 0.3s ease;
