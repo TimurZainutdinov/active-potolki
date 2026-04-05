@@ -115,14 +115,71 @@ class Slider {
             }, 50);
         }, { passive: true });
     
-        // Блокируем ложный click после свайпа, чтобы не открывался lightbox
+        // Mouse drag support
+        let mouseStartX = 0;
+        let mouseEndX = 0;
+        let isDragging = false;
+        let wasDrag = false;
+
+        this.slider.addEventListener('mousedown', (e) => {
+            // Только левая кнопка мыши
+            if (e.button !== 0) return;
+
+            mouseStartX = e.clientX;
+            mouseEndX = e.clientX;
+            isDragging = true;
+            wasDrag = false;
+
+            this.slider.classList.add('is-dragging');
+        });
+
+        window.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+
+            mouseEndX = e.clientX;
+            const diffX = Math.abs(mouseEndX - mouseStartX);
+
+            if (diffX > 10) {
+                wasDrag = true;
+            }
+        });
+
+        window.addEventListener('mouseup', () => {
+            if (!isDragging) return;
+
+            const diffX = mouseStartX - mouseEndX;
+            const dragThreshold = 50;
+
+            if (Math.abs(diffX) > dragThreshold) {
+                if (diffX > 0) {
+                    this.next();
+                } else {
+                    this.prev();
+                }
+            }
+
+            isDragging = false;
+            this.slider.classList.remove('is-dragging');
+
+            setTimeout(() => {
+                wasDrag = false;
+            }, 50);
+        });
+
+        // Блокируем click после drag, чтобы не открывался lightbox
         this.slider.addEventListener('click', (e) => {
-            if (wasSwipe) {
+            if (wasSwipe || wasDrag) {
                 e.preventDefault();
                 e.stopPropagation();
                 wasSwipe = false;
+                wasDrag = false;
             }
         }, true);
+
+        this.slider.addEventListener('dragstart', (e) => {
+            e.preventDefault();
+        });
+        
     }
     
     handleSwipe(startX, endX, startY, endY) {
