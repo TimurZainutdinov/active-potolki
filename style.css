@@ -222,6 +222,16 @@ address {
     box-shadow: var(--shadow-glow);
 }
 
+#heroSlider,
+#heroSlider .slider__container {
+    touch-action: pan-y;
+}
+
+#heroSlider .slider__image {
+    -webkit-user-drag: none;
+    user-select: none;
+}
+
 /* Lightbox Gallery */
 .lightbox {
     position: fixed;
